@@ -23,7 +23,8 @@ export default function Home() {
   const [showSettings, setShowSettings] = useState(false);
   const [editTitle, setEditTitle] = useState(false);
   const [newChoice, setNewChoice] = useState("");
-  const [maxScore, setMaxScore] = useState(10);\n  const [totalCapital, setTotalCapital] = useState(1000000000);
+  const [maxScore, setMaxScore] = useState(10);
+  const [totalCapital, setTotalCapital] = useState(1000000000);
   const [direction, setDirection] = useState<"high" | "low">("high");
   const [search, setSearch] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
@@ -36,7 +37,8 @@ export default function Home() {
         if (d.title) setTitle(d.title);
         if (Array.isArray(d.criteria) && d.criteria.length) setCriteria(d.criteria);
         if (Array.isArray(d.choices)) setChoices(d.choices);
-        if (d.maxScore) setMaxScore(d.maxScore);\n        if (Number.isFinite(d.totalCapital) && d.totalCapital >= 0) setTotalCapital(d.totalCapital);
+        if (d.maxScore) setMaxScore(d.maxScore);
+        if (Number.isFinite(d.totalCapital) && d.totalCapital >= 0) setTotalCapital(d.totalCapital);
         if (d.direction) setDirection(d.direction);
       }
     } catch {}
