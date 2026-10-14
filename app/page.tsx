@@ -1,7 +1,7 @@
  "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Plus, Trash2, Settings2, Download, Upload, RotateCcw, Trophy, SlidersHorizontal, Pencil, Check, X, FileSpreadsheet } from "lucide-react";
+import { Plus, Trash2, Settings2, Download, Upload, RotateCcw, Trophy, SlidersHorizontal, Pencil, Check, X, FileSpreadsheet, Printer, FileDown } from "lucide-react";
 import * as XLSX from "xlsx";
 
 type Choice = { id: string; name: string; scores: number[] };
@@ -155,7 +155,9 @@ export default function Home() {
           <button className="btn ghost" onClick={() => fileRef.current?.click()}><Upload size={16}/> Nhập Excel</button>
           <input ref={fileRef} type="file" accept=".xlsx,.xls,.csv" hidden onChange={e => importExcel(e.target.files?.[0])}/>
           <button className="btn ghost" onClick={exportExcel}><Download size={16}/> Xuất Excel</button>
-          <button className="btn primary" onClick={() => setShowSettings(v => !v)}><Settings2 size={16}/> Cài đặt</button>
+          <button className="btn ghost printAction" onClick={() => window.print()} title="In bảng đánh giá"><Printer size={16}/> Print Out</button>
+          <button className="btn ghost printAction" onClick={() => window.print()} title="Trong hộp thoại in, chọn Save as PDF"><FileDown size={16}/> PDF</button>
+          <button className="btn primary noPrint" onClick={() => setShowSettings(v => !v)}><Settings2 size={16}/> Cài đặt</button>
         </div>
       </header>
 
@@ -190,7 +192,7 @@ export default function Home() {
       </section>
 
       <section className="panel tablePanel">
-        <div className="sectionHead tableHeading"><div><h2>Bảng đánh giá</h2><p>Nhập điểm trực tiếp vào ô. Tổng điểm và xếp hạng được tính tự động.</p></div><div className="tableTools"><input className="search" placeholder="Tìm lựa chọn..." value={search} onChange={e => setSearch(e.target.value)}/><button className="iconBtn" title="Khôi phục dữ liệu mẫu" onClick={resetAll}><RotateCcw size={17}/></button></div></div>
+        <div className="sectionHead tableHeading"><div><h2>Bảng đánh giá</h2><p className="screenOnlyHint">Nhập điểm trực tiếp vào ô. Tổng điểm và xếp hạng được tính tự động.</p><p className="printOnlyHint">Báo cáo tổng hợp các lựa chọn, tiêu chí và điểm đánh giá.</p></div><div className="tableTools"><input className="search" placeholder="Tìm lựa chọn..." value={search} onChange={e => setSearch(e.target.value)}/><button className="iconBtn" title="Khôi phục dữ liệu mẫu" onClick={resetAll}><RotateCcw size={17}/></button></div></div>
         <div className="tableWrap"><table><thead><tr><th className="rankCol">HẠNG</th><th className="nameCol">DANH SÁCH LỰA CHỌN</th>{criteria.map((c, i) => <th key={i} className="scoreCol"><span>{c || `Tiêu chí ${i+1}`}</span><small>0–{maxScore} điểm</small></th>)}<th className="totalCol">TỔNG ĐIỂM</th><th className="percentCol">% ĐIỂM</th><th></th></tr></thead>
           <tbody>{visibleRows.map((r, idx) => <tr key={r.id} className={idx === 0 && search === "" ? "topRow" : ""}><td className="rankCell"><span className={`rankBadge ${r.rank === 1 ? "first" : ""}`}>{r.rank === 1 ? <Trophy size={14}/> : r.rank}</span></td><td><input className="nameField" value={r.name} onChange={e => renameChoice(r.id, e.target.value)} aria-label="Tên lựa chọn"/></td>{criteria.map((c, i) => <td key={i}><input className="scoreInput" type="number" min="0" max={maxScore} value={r.scores[i] ?? 0} onChange={e => updateScore(r.id, i, e.target.value)} aria-label={`${r.name} - ${c}`}/></td>)}<td><strong className="totalNum">{r.total}</strong><div className="miniBar"><span style={{width: `${Math.min(100, r.total / Math.max(1, criteria.length * maxScore) * 100)}%`}}/></div></td><td><div className="percentCell">{r.percent.toFixed(1)}%</div></td><td><button className="iconBtn danger" title="Xóa lựa chọn" onClick={() => setChoices(prev => prev.filter(c => c.id !== r.id))}><Trash2 size={16}/></button></td></tr>)}
           {visibleRows.length === 0 && <tr><td colSpan={criteria.length + 5} className="empty">Chưa có lựa chọn phù hợp. Hãy thêm lựa chọn mới bên dưới.</td></tr>}</tbody></table></div>

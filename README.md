@@ -8,6 +8,7 @@ Website Next.js bằng tiếng Việt để so sánh phương án theo tiêu ch�
 - Chấm điểm từng tiêu chí; tổng điểm, thứ hạng và tỷ lệ % tự tính.
 - Chọn quy tắc xếp hạng điểm cao hoặc điểm thấp.
 - Nhập Excel (.xlsx, .xls, .csv) và xuất bảng kết quả ra Excel.
+- Nút Print Out để in báo cáo; nút PDF mở hộp thoại in của trình duyệt để chọn “Save as PDF” / “Lưu dưới dạng PDF”.
 - Tự lưu trong `localStorage` của trình duyệt đang dùng.
 - Giao diện responsive cho máy tính và điện thoại.
 - Dữ liệu mẫu được dựng theo file `Phan bo danh muc.xlsx`: Vàng, Chứng khoán, BĐS, Tiền gửi; tiêu chí An toàn, Lợi nhuận, Thanh khoản, Tiêu chí 4, Tiêu chí 5.
