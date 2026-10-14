@@ -104,8 +104,8 @@
 .coffeeIcon span{font-size:26px}
 .donationIntro h2{font:800 22px Manrope;margin:5px 0}
 .donationIntro p{font-size:12px;color:#718079;margin:0;line-height:1.6}
-.donationCards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:800px;margin:0 auto}
-.donationCard{background:#fff;border:1px solid #e4ebe6;border-radius:12px;padding:16px;display:flex;flex-direction:column;align-items:center;min-width:0}
+.donationCards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:620px;margin:0 auto}
+.donationCard{background:#fff;border:1px solid #e4ebe6;border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;min-width:0}
 .donationCardHead{display:flex;align-items:center;gap:10px;width:100%;min-height:42px}
 .paymentDot{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;font-weight:900;flex-shrink:0}
 .momoDot{background:#f9e7f2;color:#b52a7c}
@@ -113,8 +113,17 @@
 .donationCardHead strong{font-size:12px;display:block}
 .donationCardHead small{display:block;color:#89958e;font-size:9px;line-height:1.5;margin-top:4px}
 .donationQr{display:block;object-fit:contain;max-width:100%;height:auto;margin:14px auto 8px;border-radius:5px}
-.momoQr{width:min(100%,330px)}
-.bankQr{width:min(100%,300px)}
+.momoQr{width:min(100%,190px)}
+.bankQr{width:min(100%,180px)}
 .qrCaption{font-size:10px;color:#74827a;text-align:center;margin-top:auto;padding-top:7px}
-@media(max-width:560px){.donationSection{padding:16px 12px}.donationIntro{align-items:flex-start;justify-content:flex-start}.donationIntro h2{font-size:19px}.donationCards{grid-template-columns:1fr}.donationQr{width:min(100%,300px)}}
+@media(max-width:560px){.donationSection{padding:16px 12px}.donationIntro{align-items:flex-start;justify-content:flex-start}.donationIntro h2{font-size:19px}.donationCards{grid-template-columns:1fr;max-width:340px}.donationQr{width:min(100%,190px)}}
 @media print{.donationSection{display:none!important}}
+
+/* Donation payment links */
+.donationQrLink{display:block;width:fit-content;max-width:100%;margin:0 auto;text-decoration:none}
+.donationQrLink:focus-visible,.paymentLink:focus-visible{outline:3px solid #7fc8a5;outline-offset:3px;border-radius:8px}
+.paymentLink{display:inline-flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;padding:9px 14px;border-radius:9px;text-decoration:none;font-size:11px;font-weight:800;transition:transform .15s,box-shadow .15s}
+.paymentLink:hover{transform:translateY(-1px);box-shadow:0 4px 12px #102e2018}
+.momoPaymentLink{background:#a83279;color:#fff}
+.bankPaymentLink{background:#176b56;color:#fff}
+@media print{.paymentLink{display:none!important}}

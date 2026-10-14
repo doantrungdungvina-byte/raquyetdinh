@@ -253,19 +253,25 @@ export default function Home() {
           <div>
             <div className="eyebrow">SUPPORT THIS PROJECT</div>
             <h2>Buy me a Coffee</h2>
-            <p>Nếu Decision Desk hữu ích với bạn, hãy ủng hộ để giúp duy trì và phát triển công cụ.</p>
+            <p>Nếu Decision Desk hữu ích với bạn, hãy ủng hộ để giúp duy trì và phát triển công cụ bạn nhé 😊</p>
           </div>
         </div>
         <div className="donationCards">
           <div className="donationCard">
             <div className="donationCardHead"><span className="paymentDot momoDot">M</span><div><strong>Momo · VietQR</strong><small>Quét mã bằng ứng dụng ngân hàng hoặc MoMo</small></div></div>
-            <img src="/momo-vietqr.png" alt="Mã QR MoMo VietQR để ủng hộ" className="donationQr momoQr"/>
-            <div className="qrCaption">Quét mã QR để chuyển khoản</div>
+            <a className="donationQrLink" href="https://me.momo.vn/zbfAIwTbIvuOINC7" target="_blank" rel="noopener noreferrer" aria-label="Mở liên kết chuyển tiền MoMo">
+              <img src="/momo-vietqr.png" alt="Mã QR MoMo VietQR để ủng hộ" className="donationQr momoQr"/>
+            </a>
+            <div className="qrCaption">Quét mã QR hoặc bấm nút bên dưới để mở MoMo</div>
+            <a className="paymentLink momoPaymentLink" href="https://me.momo.vn/zbfAIwTbIvuOINC7" target="_blank" rel="noopener noreferrer">Mở MoMo để ủng hộ ↗</a>
           </div>
           <div className="donationCard">
             <div className="donationCardHead"><span className="paymentDot bankDot">T</span><div><strong>Techcombank · VietQR</strong><small>Ủng hộ qua chuyển khoản ngân hàng</small></div></div>
-            <img src="/techcombank-qr.png" alt="Mã QR Techcombank để ủng hộ" className="donationQr bankQr"/>
+            <a className="donationQrLink" href="/techcombank-qr.png" target="_blank" rel="noopener noreferrer" aria-label="Mở mã QR Techcombank kích thước lớn">
+              <img src="/techcombank-qr.png" alt="Mã QR Techcombank để ủng hộ" className="donationQr bankQr"/>
+            </a>
             <div className="qrCaption">Quét mã QR bằng ứng dụng ngân hàng</div>
+            <a className="paymentLink bankPaymentLink" href="/techcombank-qr.png" target="_blank" rel="noopener noreferrer">Mở QR chuyển khoản ↗</a>
           </div>
         </div>
       </section>
