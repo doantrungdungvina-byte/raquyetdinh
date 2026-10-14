@@ -95,3 +95,26 @@
   .capitalAmount,.capitalTable tfoot td:last-child{font-size:9px}
   .capitalNote{padding:8px 12px;font-size:7px}
 }
+
+
+/* Support / donation footer */
+.donationSection{margin-top:22px;padding:24px;border:1px solid #e4eae6;border-radius:14px;background:linear-gradient(135deg,#fffdf9,#f5faf7)}
+.donationIntro{display:flex;align-items:center;justify-content:center;gap:14px;text-align:left;margin-bottom:22px}
+.coffeeIcon{width:50px;height:50px;border-radius:15px;background:#f4e5d2;display:grid;place-items:center;flex-shrink:0}
+.coffeeIcon span{font-size:26px}
+.donationIntro h2{font:800 22px Manrope;margin:5px 0}
+.donationIntro p{font-size:12px;color:#718079;margin:0;line-height:1.6}
+.donationCards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:800px;margin:0 auto}
+.donationCard{background:#fff;border:1px solid #e4ebe6;border-radius:12px;padding:16px;display:flex;flex-direction:column;align-items:center;min-width:0}
+.donationCardHead{display:flex;align-items:center;gap:10px;width:100%;min-height:42px}
+.paymentDot{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;font-weight:900;flex-shrink:0}
+.momoDot{background:#f9e7f2;color:#b52a7c}
+.bankDot{background:#fce8e9;color:#c92232}
+.donationCardHead strong{font-size:12px;display:block}
+.donationCardHead small{display:block;color:#89958e;font-size:9px;line-height:1.5;margin-top:4px}
+.donationQr{display:block;object-fit:contain;max-width:100%;height:auto;margin:14px auto 8px;border-radius:5px}
+.momoQr{width:min(100%,330px)}
+.bankQr{width:min(100%,300px)}
+.qrCaption{font-size:10px;color:#74827a;text-align:center;margin-top:auto;padding-top:7px}
+@media(max-width:560px){.donationSection{padding:16px 12px}.donationIntro{align-items:flex-start;justify-content:flex-start}.donationIntro h2{font-size:19px}.donationCards{grid-template-columns:1fr}.donationQr{width:min(100%,300px)}}
+@media print{.donationSection{display:none!important}}

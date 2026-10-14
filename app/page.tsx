@@ -247,6 +247,28 @@ export default function Home() {
         <div className="panel insightPanel"><div className="sectionHead"><div><h2>So sánh tổng điểm</h2><p>Nhìn nhanh mức điểm của từng lựa chọn.</p></div></div><div className="barList">{ranked.map(r => <div className="barItem" key={r.id}><div className="barLabels"><span>{r.name || "Chưa đặt tên"}</span><strong>{r.total}</strong></div><div className="barTrack"><span style={{width: `${Math.min(100, r.total / Math.max(1, criteria.length * maxScore) * 100)}%`}}/></div></div>)}{ranked.length === 0 && <p className="empty">Chưa có dữ liệu.</p>}</div></div>
         <div className="panel recommendation"><div className="recommendIcon"><Trophy size={21}/></div><div className="eyebrow">GỢI Ý THEO ĐIỂM SỐ</div><h2>{best?.name || "Chưa có lựa chọn"}</h2><p>{best ? `Đang đứng hạng ${best.rank} với ${best.total} điểm trên tổng tối đa ${criteria.length * maxScore} điểm.` : "Hãy thêm lựa chọn và chấm điểm để xem kết quả."}</p><div className="disclaimer">Kết quả là công cụ hỗ trợ so sánh theo điểm bạn nhập, không thay thế việc cân nhắc rủi ro và hoàn cảnh thực tế.</div></div>
       </section>
+      <section className="donationSection noPrint">
+        <div className="donationIntro">
+          <div className="coffeeIcon"><span>☕</span></div>
+          <div>
+            <div className="eyebrow">SUPPORT THIS PROJECT</div>
+            <h2>Buy me a Coffee</h2>
+            <p>Nếu Decision Desk hữu ích với bạn, hãy ủng hộ để giúp duy trì và phát triển công cụ.</p>
+          </div>
+        </div>
+        <div className="donationCards">
+          <div className="donationCard">
+            <div className="donationCardHead"><span className="paymentDot momoDot">M</span><div><strong>Momo · VietQR</strong><small>Quét mã bằng ứng dụng ngân hàng hoặc MoMo</small></div></div>
+            <img src="/momo-vietqr.png" alt="Mã QR MoMo VietQR để ủng hộ" className="donationQr momoQr"/>
+            <div className="qrCaption">Quét mã QR để chuyển khoản</div>
+          </div>
+          <div className="donationCard">
+            <div className="donationCardHead"><span className="paymentDot bankDot">T</span><div><strong>Techcombank · VietQR</strong><small>Ủng hộ qua chuyển khoản ngân hàng</small></div></div>
+            <img src="/techcombank-qr.png" alt="Mã QR Techcombank để ủng hộ" className="donationQr bankQr"/>
+            <div className="qrCaption">Quét mã QR bằng ứng dụng ngân hàng</div>
+          </div>
+        </div>
+      </section>
       <footer><span>DECISION DESK · DANH SÁCH LỰA CHỌN</span><span>Dữ liệu hiện được lưu trong trình duyệt của thiết bị đang sử dụng.</span></footer>
     </main>
   );

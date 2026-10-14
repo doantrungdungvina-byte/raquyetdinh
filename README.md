@@ -33,3 +33,5 @@ Mở http://localhost:3000
 Bản khởi đầu lưu dữ liệu ở trình duyệt hiện tại, chưa đồng bộ giữa nhiều máy/người dùng và chưa có đăng nhập admin. Nếu cần sử dụng chung cho nhiều người, bước tiếp theo nên kết nối Supabase và phân quyền quản trị trước khi đưa dữ liệu thật vào.
 
 - Bảng phân bổ vốn đầu tư: nhập tổng vốn có thể thay đổi, tính tỷ trọng điểm và số vốn phân bổ cho từng lựa chọn; thông tin vốn được lưu cùng cấu hình và đưa vào file Excel xuất ra.
+
+- Footer ủng hộ tác giả “Buy me a Coffee” với mã QR MoMo/VietQR và Techcombank/VietQR do người dùng cung cấp.
