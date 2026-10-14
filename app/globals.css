@@ -51,3 +51,47 @@
   .recommendation .disclaimer{display:block!important}
   tr{break-inside:avoid}
 }
+
+
+/* Capital allocation */
+.capitalPanel{margin-top:18px;overflow:hidden}
+.capitalHeading{padding:22px 23px;align-items:flex-end}
+.capitalHeading h2{font:800 17px Manrope;margin:8px 0 0}
+.capitalInputWrap{display:grid;gap:6px;min-width:260px;font-size:10px;font-weight:800;color:#6f8078}
+.capitalInputLine{display:flex;align-items:center;border:1px solid #dbe7df;border-radius:9px;background:#fbfdfb;overflow:hidden}
+.capitalInputLine input{width:100%;min-width:0;border:0;outline:none;background:transparent;padding:10px 11px;font-size:14px;font-weight:800;color:#1d4737}
+.capitalInputLine input:focus{outline:none}
+.capitalInputLine span{padding:0 12px;color:#71827a;font-size:10px}
+.capitalInputWrap small{font-size:10px;color:#819087;font-weight:500}
+.capitalSummary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 23px 18px}
+.capitalSummary>div{background:#f5f9f6;border:1px solid #e5eee8;border-radius:9px;padding:12px 14px;display:grid;gap:6px}
+.capitalSummary span{font-size:10px;color:#7d8b83}
+.capitalSummary strong{font:800 15px Manrope;color:#1b6249}
+.capitalTableWrap{border-top:1px solid var(--line)}
+.capitalTable{min-width:760px}
+.capitalTable tbody td{height:52px}
+.capitalChoice{color:#263e34}
+.capitalPercent{color:#267653}
+.formulaCell{font-size:11px;color:#75837c}
+.capitalAmount{font:800 13px Manrope;color:#176b56}
+.capitalTable tfoot td{background:#eef7f1;border-top:1px solid #d7e9dd;padding:14px 12px;font-size:10px;font-weight:800;color:#305c48}
+.capitalTable tfoot td:last-child{font:800 14px Manrope;color:#176b56}
+.capitalNote{padding:14px 22px 18px;margin:0;font-size:10px;line-height:1.7;color:#87938c}
+@media(max-width:560px){.capitalHeading{align-items:stretch;flex-direction:column;padding:18px 14px}.capitalInputWrap{min-width:0}.capitalSummary{grid-template-columns:1fr;padding:0 14px 14px}.capitalNote{padding:12px 14px}}
+@media print{
+  .capitalPanel{margin-top:10px;break-inside:avoid}
+  .capitalHeading{padding:10px 12px}
+  .capitalInputWrap{min-width:170px}
+  .capitalInputLine{border:0;background:transparent}
+  .capitalInputLine input{padding:2px;font-size:10px}
+  .capitalInputLine span{padding:0}
+  .capitalInputWrap small{font-size:8px}
+  .capitalSummary{padding:0 12px 10px;gap:6px}
+  .capitalSummary>div{padding:7px}
+  .capitalSummary strong{font-size:10px}
+  .capitalTable{min-width:0}
+  .capitalTable thead th{font-size:7px}
+  .capitalTable tbody td,.capitalTable tfoot td{padding:5px 4px;font-size:8px}
+  .capitalAmount,.capitalTable tfoot td:last-child{font-size:9px}
+  .capitalNote{padding:8px 12px;font-size:7px}
+}

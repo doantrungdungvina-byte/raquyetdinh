@@ -23,7 +23,7 @@ export default function Home() {
   const [showSettings, setShowSettings] = useState(false);
   const [editTitle, setEditTitle] = useState(false);
   const [newChoice, setNewChoice] = useState("");
-  const [maxScore, setMaxScore] = useState(10);
+  const [maxScore, setMaxScore] = useState(10);\n  const [totalCapital, setTotalCapital] = useState(1000000000);
   const [direction, setDirection] = useState<"high" | "low">("high");
   const [search, setSearch] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
@@ -36,7 +36,7 @@ export default function Home() {
         if (d.title) setTitle(d.title);
         if (Array.isArray(d.criteria) && d.criteria.length) setCriteria(d.criteria);
         if (Array.isArray(d.choices)) setChoices(d.choices);
-        if (d.maxScore) setMaxScore(d.maxScore);
+        if (d.maxScore) setMaxScore(d.maxScore);\n        if (Number.isFinite(d.totalCapital) && d.totalCapital >= 0) setTotalCapital(d.totalCapital);
         if (d.direction) setDirection(d.direction);
       }
     } catch {}
@@ -45,8 +45,8 @@ export default function Home() {
 
   useEffect(() => {
     if (!loaded) return;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ title, criteria, choices, maxScore, direction }));
-  }, [loaded, title, criteria, choices, maxScore, direction]);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ title, criteria, choices, maxScore, direction, totalCapital }));
+  }, [loaded, title, criteria, choices, maxScore, direction, totalCapital]);
 
   const ranked = useMemo(() => {
     const rows = choices.map(c => {
@@ -93,7 +93,9 @@ export default function Home() {
     const rows = ranked.map((r, i) => ({
       "Xếp hạng": i + 1, "Danh sách lựa chọn": r.name,
       ...Object.fromEntries(criteria.map((c, j) => [c || `Tiêu chí ${j + 1}`, r.scores[j]])),
-      "Tổng điểm": r.total, "% tổng điểm": `${r.percent.toFixed(1)}%`
+      "Tổng điểm": r.total, "% tổng điểm": `${r.percent.toFixed(2)}%`,
+      "Tổng vốn đầu tư": totalCapital,
+      "Số vốn phân bổ": ranked.reduce((sum, x) => sum + x.total, 0) > 0 ? Math.round(r.total / ranked.reduce((sum, x) => sum + x.total, 0) * totalCapital) : 0
     }));
     const ws = XLSX.utils.json_to_sheet(rows);
     const wb = XLSX.utils.book_new();
@@ -197,6 +199,46 @@ export default function Home() {
           <tbody>{visibleRows.map((r, idx) => <tr key={r.id} className={idx === 0 && search === "" ? "topRow" : ""}><td className="rankCell"><span className={`rankBadge ${r.rank === 1 ? "first" : ""}`}>{r.rank === 1 ? <Trophy size={14}/> : r.rank}</span></td><td><input className="nameField" value={r.name} onChange={e => renameChoice(r.id, e.target.value)} aria-label="Tên lựa chọn"/></td>{criteria.map((c, i) => <td key={i}><input className="scoreInput" type="number" min="0" max={maxScore} value={r.scores[i] ?? 0} onChange={e => updateScore(r.id, i, e.target.value)} aria-label={`${r.name} - ${c}`}/></td>)}<td><strong className="totalNum">{r.total}</strong><div className="miniBar"><span style={{width: `${Math.min(100, r.total / Math.max(1, criteria.length * maxScore) * 100)}%`}}/></div></td><td><div className="percentCell">{r.percent.toFixed(1)}%</div></td><td><button className="iconBtn danger" title="Xóa lựa chọn" onClick={() => setChoices(prev => prev.filter(c => c.id !== r.id))}><Trash2 size={16}/></button></td></tr>)}
           {visibleRows.length === 0 && <tr><td colSpan={criteria.length + 5} className="empty">Chưa có lựa chọn phù hợp. Hãy thêm lựa chọn mới bên dưới.</td></tr>}</tbody></table></div>
         <div className="addRow"><form onSubmit={e => {e.preventDefault(); addChoice();}}><input value={newChoice} onChange={e => setNewChoice(e.target.value)} placeholder="Nhập tên lựa chọn mới, ví dụ: Quỹ mở..." aria-label="Tên lựa chọn mới"/><button className="btn primary" type="submit"><Plus size={16}/> Thêm lựa chọn</button></form><span className="autosave"><Check size={14}/> Tự lưu trên trình duyệt này</span></div>
+      </section>
+
+      <section className="panel capitalPanel">
+        <div className="sectionHead capitalHeading">
+          <div>
+            <div className="eyebrow">PHÂN BỔ NGUỒN VỐN</div>
+            <h2>Bảng phân bổ vốn đầu tư</h2>
+            <p>Phân bổ vốn theo tỷ trọng điểm của từng lựa chọn trong tổng điểm.</p>
+          </div>
+          <label className="capitalInputWrap">Tổng số vốn đầu tư
+            <div className="capitalInputLine">
+              <input type="number" min="0" step="1000000" value={totalCapital} onChange={e => setTotalCapital(Math.max(0, Number(e.target.value) || 0))} aria-label="Tổng số vốn đầu tư"/>
+              <span>VNĐ</span>
+            </div>
+            <small>{new Intl.NumberFormat("vi-VN").format(totalCapital)} đ</small>
+          </label>
+        </div>
+        <div className="capitalSummary">
+          <div><span>Tổng vốn phân bổ</span><strong>{new Intl.NumberFormat("vi-VN", {maximumFractionDigits: 0}).format(ranked.reduce((sum, r) => sum + (ranked.reduce((s, x) => s + x.total, 0) > 0 ? r.total / ranked.reduce((s, x) => s + x.total, 0) * totalCapital : 0), 0))} đ</strong></div>
+          <div><span>Số lựa chọn</span><strong>{ranked.length}</strong></div>
+          <div><span>Phương pháp</span><strong>Tỷ trọng điểm</strong></div>
+        </div>
+        <div className="tableWrap capitalTableWrap">
+          <table className="capitalTable">
+            <thead><tr><th>HẠNG</th><th>DANH SÁCH LỰA CHỌN</th><th>TỔNG ĐIỂM</th><th>% ĐIỂM</th><th>CÔNG THỨC PHÂN BỔ</th><th>SỐ VỐN ĐẦU TƯ</th></tr></thead>
+            <tbody>
+              {ranked.map(r => <tr key={r.id}>
+                <td><span className={`rankBadge ${r.rank === 1 ? "first" : ""}`}>{r.rank === 1 ? <Trophy size={14}/> : r.rank}</span></td>
+                <td><strong className="capitalChoice">{r.name || "Chưa đặt tên"}</strong></td>
+                <td><strong>{r.total}</strong></td>
+                <td><strong className="capitalPercent">{r.percent.toFixed(2)}%</strong></td>
+                <td className="formulaCell">{r.percent.toFixed(2)}% × {new Intl.NumberFormat("vi-VN", {maximumFractionDigits: 0}).format(totalCapital)} đ</td>
+                <td><strong className="capitalAmount">{new Intl.NumberFormat("vi-VN", {maximumFractionDigits: 0}).format(ranked.reduce((sum, x) => sum + x.total, 0) > 0 ? r.total / ranked.reduce((sum, x) => sum + x.total, 0) * totalCapital : 0)} đ</strong></td>
+              </tr>)}
+              {ranked.length === 0 && <tr><td colSpan={6} className="empty">Thêm lựa chọn trong Bảng đánh giá để tính vốn đầu tư.</td></tr>}
+            </tbody>
+            <tfoot><tr><td colSpan={5}>TỔNG VỐN ĐẦU TƯ PHÂN BỔ</td><td><strong>{new Intl.NumberFormat("vi-VN", {maximumFractionDigits: 0}).format(ranked.reduce((sum, r) => sum + r.total, 0) > 0 ? totalCapital : 0)} đ</strong></td></tr></tfoot>
+          </table>
+        </div>
+        <p className="capitalNote">Cách tính: % điểm của lựa chọn = điểm lựa chọn ÷ tổng điểm của tất cả lựa chọn × 100%. Số vốn đầu tư = % điểm × tổng số vốn đầu tư. Nếu tất cả lựa chọn có tổng điểm bằng 0, vốn chưa được phân bổ.</p>
       </section>
 
       <section className="insightGrid">
