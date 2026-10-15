@@ -25,6 +25,8 @@ export default function Home() {
   const [newChoice, setNewChoice] = useState("");
   const [maxScore, setMaxScore] = useState(10);
   const [totalCapital, setTotalCapital] = useState(1000000000);
+  const [showMomoQr, setShowMomoQr] = useState(false);
+  const [showBankQr, setShowBankQr] = useState(false);
   const [direction, setDirection] = useState<"high" | "low">("high");
   const [search, setSearch] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
@@ -258,19 +260,29 @@ export default function Home() {
         </div>
         <div className="donationCards">
           <div className="donationCard">
-            <div className="donationCardHead"><span className="paymentDot momoDot">M</span><div><strong>Momo · VietQR</strong><small>Quét mã bằng ứng dụng ngân hàng hoặc MoMo</small></div></div>
-            <a className="donationQrLink" href="https://me.momo.vn/zbfAIwTbIvuOINC7" target="_blank" rel="noopener noreferrer" aria-label="Mở liên kết chuyển tiền MoMo">
-              <img src="/momo-vietqr.png" alt="Mã QR MoMo VietQR để ủng hộ" className="donationQr momoQr"/>
-            </a>
-            <div className="qrCaption">Quét mã QR hoặc bấm nút bên dưới để mở MoMo</div>
+            <div className="donationCardHead"><span className="paymentDot momoDot">M</span><div><strong>MoMo · VietQR</strong><small>Quét mã bằng ứng dụng ngân hàng hoặc MoMo</small></div></div>
+            <button type="button" className="qrToggleButton momoToggle" aria-expanded={showMomoQr} onClick={() => setShowMomoQr(v => !v)}>
+              {showMomoQr ? "Ẩn mã QR ▲" : "Hiện mã QR ▼"}
+            </button>
+            {showMomoQr && <>
+              <a className="donationQrLink" href="https://me.momo.vn/zbfAIwTbIvuOINC7" target="_blank" rel="noopener noreferrer" aria-label="Mở liên kết chuyển tiền MoMo">
+                <img src="/momo-vietqr.png" alt="Mã QR MoMo VietQR để ủng hộ" className="donationQr momoQr"/>
+              </a>
+              <div className="qrCaption">Quét mã QR bằng ứng dụng MoMo hoặc ngân hàng</div>
+            </>}
             <a className="paymentLink momoPaymentLink" href="https://me.momo.vn/zbfAIwTbIvuOINC7" target="_blank" rel="noopener noreferrer">Mở MoMo để ủng hộ ↗</a>
           </div>
           <div className="donationCard">
             <div className="donationCardHead"><span className="paymentDot bankDot">T</span><div><strong>Techcombank · VietQR</strong><small>Ủng hộ qua chuyển khoản ngân hàng</small></div></div>
-            <a className="donationQrLink" href="/techcombank-qr.png" target="_blank" rel="noopener noreferrer" aria-label="Mở mã QR Techcombank kích thước lớn">
-              <img src="/techcombank-qr.png" alt="Mã QR Techcombank để ủng hộ" className="donationQr bankQr"/>
-            </a>
-            <div className="qrCaption">Quét mã QR bằng ứng dụng ngân hàng</div>
+            <button type="button" className="qrToggleButton bankToggle" aria-expanded={showBankQr} onClick={() => setShowBankQr(v => !v)}>
+              {showBankQr ? "Ẩn mã VietQR ▲" : "Hiện mã VietQR ▼"}
+            </button>
+            {showBankQr && <>
+              <a className="donationQrLink" href="/techcombank-qr.png" target="_blank" rel="noopener noreferrer" aria-label="Mở mã QR Techcombank kích thước lớn">
+                <img src="/techcombank-qr.png" alt="Mã VietQR Techcombank để ủng hộ" className="donationQr bankQr"/>
+              </a>
+              <div className="qrCaption">Quét mã VietQR bằng ứng dụng ngân hàng</div>
+            </>}
             <a className="paymentLink bankPaymentLink" href="/techcombank-qr.png" target="_blank" rel="noopener noreferrer">Mở QR chuyển khoản ↗</a>
           </div>
         </div>

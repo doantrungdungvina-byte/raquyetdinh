@@ -35,3 +35,11 @@ Bản khởi đầu lưu dữ liệu ở trình duyệt hiện tại, chưa đ�
 - Bảng phân bổ vốn đầu tư: nhập tổng vốn có thể thay đổi, tính tỷ trọng điểm và số vốn phân bổ cho từng lựa chọn; thông tin vốn được lưu cùng cấu hình và đưa vào file Excel xuất ra.
 
 - Footer ủng hộ tác giả “Buy me a Coffee” với mã QR MoMo/VietQR và Techcombank/VietQR do người dùng cung cấp.
+
+- Phần Buy me a Coffee dùng lời nhắn thân thiện và QR Momo/Techcombank đã thu gọn để bố cục gọn hơn.
+
+- MoMo QR và nút “Mở MoMo để ủng hộ” liên kết tới https://me.momo.vn/zbfAIwTbIvuOINC7. QR Techcombank mở ảnh QR kích thước lớn; cần URL thanh toán/chuyển khoản chính thức nếu muốn nút mở ứng dụng ngân hàng trực tiếp.
+
+
+### QR ủng hộ
+- Mã MoMo và Techcombank VietQR được ẩn mặc định để phần cuối trang gọn hơn. Người dùng bấm **Hiện mã QR** hoặc **Hiện mã VietQR** để xem mã; có thể bấm lại để ẩn.
