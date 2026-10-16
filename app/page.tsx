@@ -156,7 +156,7 @@ export default function Home() {
   return (
     <main className="shell">
       <header className="topbar">
-        <div className="brand"><div className="brandMark">Q</div><div><div className="brandName">DECISION DESK</div><div className="brandSub">CÔNG CỤ HỖ TRỢ RA QUYẾT ĐỊNH</div></div></div>
+        <div className="brand"><div className="brandMark">Q</div><div><div className="brandName">DECISION DESK</div><div className="brandSub">CÔNG CỤ HỖ TRỢ RA QUYẾT ĐỊNH ONLINE</div></div></div>
         <div className="topActions">
           <button className="btn ghost" onClick={() => fileRef.current?.click()}><Upload size={16}/> Nhập Excel</button>
           <input ref={fileRef} type="file" accept=".xlsx,.xls,.csv" hidden onChange={e => importExcel(e.target.files?.[0])}/>

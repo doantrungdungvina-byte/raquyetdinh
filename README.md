@@ -1,4 +1,4 @@
-# Danh sách lựa chọn — Decision Desk
+# DECISION DESK - CÔNG CỤ HỖ TRỢ RA QUYẾT ĐỊNH ONLINE
 
 Website Next.js bằng tiếng Việt để so sánh phương án theo tiêu chí đánh giá.
 

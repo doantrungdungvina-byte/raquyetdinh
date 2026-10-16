@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Danh sách lựa chọn | Ra quyết định",
-  description: "Công cụ so sánh các lựa chọn theo tiêu chí đánh giá và xếp hạng tự động.",
+  title: "DECISION DESK - CÔNG CỤ HỖ TRỢ RA QUYẾT ĐỊNH ONLINE",
+  description: "DECISION DESK - Công cụ hỗ trợ ra quyết định online, so sánh các lựa chọn theo tiêu chí đánh giá và xếp hạng tự động.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
